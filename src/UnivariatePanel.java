@@ -10,6 +10,8 @@ import java.util.*;
 public class UnivariatePanel extends JPanel implements ActionListener {
     private JTextField field;
     private JButton enter;
+    private JSlider slider; //for histogram
+    private int numOfCols; //for histogram
     //CONSTRUCTOR
     public UnivariatePanel(boolean expanded) {
         //set size
@@ -24,6 +26,11 @@ public class UnivariatePanel extends JPanel implements ActionListener {
         enter = new JButton("Enter");
         enter.setBackground(Color.LIGHT_GRAY);
         enter.addActionListener(this);
+        slider = new JSlider(10, 100, 15);
+        numOfCols = slider.getValue();
+        slider.addChangeListener(new SliderShiftSensor(this, slider));
+        slider.setPreferredSize(new Dimension(500, 25));
+        slider.setLocation(10, 500);
 
         //draw border
         TitledBorder title = BorderFactory.createTitledBorder("Univariate Analysis");
@@ -35,11 +42,17 @@ public class UnivariatePanel extends JPanel implements ActionListener {
         //add init variables
         add(field);
         add(enter);
+        add(slider);
     }
 
     //MOUSE ACTION METHODS
     @Override
     public void actionPerformed(ActionEvent e) {
+        repaint();
+    }
+
+    protected void changeHistogram(int cols) {
+        numOfCols = cols;
         repaint();
     }
 
@@ -69,7 +82,6 @@ public class UnivariatePanel extends JPanel implements ActionListener {
             Arrays.sort(input);
 
             //draw histogram inside box
-            int numOfCols = 11+input.length/5;
             double margin = 1.0/numOfCols;
 
             double[] brackets = new double[numOfCols+1]; //ten brackets for our histogram
