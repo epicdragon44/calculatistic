@@ -4,13 +4,11 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 public class TestFileGenerator {
-    public static void main(String[] args) throws IOException {
-        PrintWriter pw = new PrintWriter(new FileWriter("input.txt"));
+    public static void main(String[] args) {
         Random rand = new Random();
-        int size = rand.nextInt(25);
-        for (int i = 0; i < size; i++) {
+        int size = rand.nextInt(100);
+        for (int i = 0; i < 25; i++) {
             System.out.print(rand.nextInt(100)+" ");
         }
-        pw.close();
     }
 }
