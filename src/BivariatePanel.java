@@ -52,13 +52,13 @@ public class BivariatePanel extends JPanel implements ActionListener {
         super.paint(g);
         //draw a scatterplot
         g.drawString("Scatterplot", 10, 100);
-        g.drawRect(10, 110, 500, 350);
+        g.drawRect(10, 110, 500, 600);
         //draw a residual plot
         g.drawString("Residual Plot", 550, 100);
-        g.drawRect(550, 110, 500, 350);
+        g.drawRect(550, 110, 500, 600);
         //draw the numbers
         g.drawString("Statistics", 1100, 100);
-        g.drawRect(1100, 110, 500, 350);
+        g.drawRect(1100, 110, 500, 600);
         //draw stuff inside it if the user typed stuff in and hit enter
         if (!(field1.getText().contains("separated by spaces") || field2.getText().contains("separated by spaces"))) {
             //get arrays
