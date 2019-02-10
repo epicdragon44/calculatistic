@@ -5,13 +5,13 @@ Open Source. Feel free to submit pull requests and improve the code. **Bug repor
 ![Screenshot](/Screenshots/Screenshot2.png)
 
 ## Todo List
-- [x] Univariate Analysis
+- [ ] Univariate Analysis
   - [x] Statistics Box
   - [x] Boxplot Box
-  - [x] Histogram Box
+  - [ ] Histogram Box
     - [x] Add slider for number of columns shown
+    - [ ] Make it so that large number of columns changes interval at which labels are applied
 - [ ] Bivariate Analysis
-  - [x] Increase General Height of Everything to match JPanel size
   - [ ] Scatterplot Box
   - [ ] Residualplot Box
   - [x] Statistics Box
