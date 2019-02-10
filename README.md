@@ -5,12 +5,13 @@ Open Source. Feel free to submit pull requests and improve the code. **Bug repor
 ![Screenshot](/Screenshots/Screenshot2.png)
 
 ## Todo List
-- [ ] Univariate Analysis
+- [x] Univariate Analysis
   - [x] Statistics Box
   - [x] Boxplot Box
-  - [ ] Histogram Box
+  - [x] Histogram Box
     - [x] Add slider for number of columns shown
-    - [ ] Make it so that large number of columns changes interval at which labels are applied
+    - [x] Add label indicating what the slider does
+    - [x] Make it so that large number of columns changes interval at which labels are applied
 - [ ] Bivariate Analysis
   - [ ] Scatterplot Box
   - [ ] Residualplot Box
