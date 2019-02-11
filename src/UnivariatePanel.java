@@ -26,7 +26,7 @@ public class UnivariatePanel extends JPanel implements ActionListener {
         enter = new JButton("Enter");
         enter.setBackground(Color.LIGHT_GRAY);
         enter.addActionListener(this);
-        slider = new JSlider(10, 100, 15);
+        slider = new JSlider(10, 50, 15);
         numOfCols = slider.getValue();
         slider.addChangeListener(new SliderShiftSensor(this, slider));
         slider.setPreferredSize(new Dimension(500, 25));
@@ -59,6 +59,7 @@ public class UnivariatePanel extends JPanel implements ActionListener {
     //DRAW THE GRAPHS
     public void paint(Graphics g) {
         super.paint(g);
+        g.drawString("Slide to change number of columns in histogram:", 385, 67);
         //draw a histogram
         g.drawString("Histogram", 10, 100);
         g.drawRect(10, 110, 500, 350);
@@ -91,17 +92,19 @@ public class UnivariatePanel extends JPanel implements ActionListener {
             for (int i = 1; i < numOfCols; i++) {
                 brackets[i] = ((i)*margin)*(brackets[brackets.length-1]-brackets[0])+brackets[0];
             }
-            boolean odd = true;
+            int count = 0;
             for (int i = 0; i < pixelBrackets.length; i++) {
+                count++;
                 pixelBrackets[i] = (int)((i*margin)*450)+35;
                 g.drawLine(pixelBrackets[i], 115, pixelBrackets[i], 425);
-                if (odd) {
+                if (count==1) {
                     String toDraw = (brackets[i] + "");
                     if (toDraw.length() > 5)
                         toDraw = toDraw.substring(0, 5) + "";
                     g.drawString(toDraw, pixelBrackets[i] - 15, 445);
                 }
-                odd = !odd;
+                else
+                    count = count%(slider.getValue()/10);
             }
             int[] freqCount = new int[numOfCols];
             for (int i = 1; i < brackets.length; i++) {

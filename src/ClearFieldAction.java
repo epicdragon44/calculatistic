@@ -8,7 +8,7 @@ public class ClearFieldAction implements FocusListener {
         this.field = field;
     }
     public void focusGained(FocusEvent e) {
-        if (field.getText().equals("Enter numbers here, separated by spaces")) field.setText("");
+        if (field.getText().contains("separated by spaces")) field.setText("");
     }
     public void focusLost(FocusEvent e) {
     }
