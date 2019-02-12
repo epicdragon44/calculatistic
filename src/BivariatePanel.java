@@ -13,7 +13,7 @@ public class BivariatePanel extends JPanel implements ActionListener {
     public BivariatePanel(boolean expanded) {
         //set size
         if (expanded)
-            setPreferredSize( new Dimension( 1900, 750) );
+            setPreferredSize( new Dimension( 1900, 500) );
         else
             setPreferredSize( new Dimension(1900, 15) );
         //init variables
@@ -52,13 +52,13 @@ public class BivariatePanel extends JPanel implements ActionListener {
         super.paint(g);
         //draw a scatterplot
         g.drawString("Scatterplot", 10, 100);
-        g.drawRect(10, 110, 500, 600);
+        g.drawRect(10, 110, 500, 350);
         //draw a residual plot
         g.drawString("Residual Plot", 550, 100);
-        g.drawRect(550, 110, 500, 600);
+        g.drawRect(550, 110, 500, 350);
         //draw the numbers
         g.drawString("Statistics", 1100, 100);
-        g.drawRect(1100, 110, 500, 600);
+        g.drawRect(1100, 110, 500, 350);
         //draw stuff inside it if the user typed stuff in and hit enter
         if (!(field1.getText().contains("separated by spaces") || field2.getText().contains("separated by spaces"))) {
             //get arrays
@@ -87,31 +87,8 @@ public class BivariatePanel extends JPanel implements ActionListener {
             //draw residual plot inside box
 
             //draw statistics inside box
-            g.drawString("Variable One:", 1110, 125);
-            g.drawString("Five # Summary: "+Functions.calcMinimum(input1)+" "+Functions.calcFirstQ(input1)+" "+Functions.calcMedian(input1)+" "+Functions.calcThirdQ(input1)+" "+Functions.calcMaximum(input1), 1110, 140);
-            g.drawString("Average: "+Functions.calcAvg(input1), 1110, 155);
-            g.drawString("Standard Deviation: "+Functions.calcStandardDev(input1), 1110, 170);
-            g.drawString("Variance: "+Functions.calcVariance(input1), 1110, 185);
-            g.drawString("IQR: "+Functions.calcIQR(input1), 1110, 200);
-            g.drawString("Upper Fence: "+Functions.calcUpperFence(input1), 1110, 215);
-            g.drawString("Lower Fence: "+Functions.calcLowerFence(input1), 1110, 230);
-            g.drawString("Set of Outliers: " + Functions.calcOutliers(input1), 1110, 245);
-            g.drawString("Sum: " + Functions.calcSum(input1), 1110, 260);
-            g.drawString("Range: "+Functions.calcRange(input1), 1110, 270);
-            g.drawString("Variable Two:", 1110, 300);
-            g.drawString("Five # Summary: "+Functions.calcMinimum(input2)+" "+Functions.calcFirstQ(input2)+" "+Functions.calcMedian(input2)+" "+Functions.calcThirdQ(input2)+" "+Functions.calcMaximum(input2), 1110, 315);
-            g.drawString("Average: "+Functions.calcAvg(input2), 1110, 330);
-            g.drawString("Standard Deviation: "+Functions.calcStandardDev(input2), 1110, 345);
-            g.drawString("Variance: "+Functions.calcVariance(input2), 1110, 360);
-            g.drawString("IQR: "+Functions.calcIQR(input2), 1110, 370);
-            g.drawString("Upper Fence: "+Functions.calcUpperFence(input2), 1110, 385);
-            g.drawString("Lower Fence: "+Functions.calcLowerFence(input2), 1110, 400);
-            g.drawString("Set of Outliers: " + Functions.calcOutliers(input2), 1110, 415);
-            g.drawString("Sum: " + Functions.calcSum(input2), 1110, 430);
-            g.drawString("Range: "+Functions.calcRange(input2), 1110, 445);
-            g.drawString("Bivariate Statistics:" , 1110, 515);
-            g.drawString("Correlation Coefficient: "+Functions.calcCorrelCoef(input1, input2), 1110, 530);
-            g.drawString("Coefficient of Determination:"+Functions.calcDetermCoef(input1, input2), 1110, 545);
+            g.drawString("Correlation Coefficient: "+Functions.calcCorrelCoef(input1, input2), 1110, 125);
+            g.drawString("Coefficient of Determination:"+Functions.calcDetermCoef(input1, input2), 1110, 140);
         }
     }
 }
