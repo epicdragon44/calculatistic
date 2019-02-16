@@ -105,7 +105,7 @@ public class Functions {
     }
 
     //Coefficient of Correlation
-    public static double calcCorrelCoef(double[] input1, double[] input2) {
+    public static double calcCorrelCoef(double[] input1, double[] input2) {                                             //TODO: Calculate Correlation Coefficient
         return 0;
     }
 

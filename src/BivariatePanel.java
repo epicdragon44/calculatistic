@@ -73,7 +73,7 @@ public class BivariatePanel extends JPanel implements ActionListener {
             Arrays.sort(input1);
 
             ArrayList<Double> input2list = new ArrayList<>();
-            String typedInput2 = field1.getText();
+            String typedInput2 = field2.getText();
             st = new StringTokenizer(typedInput2);
             while (st.hasMoreTokens())
                 input2list.add(Double.parseDouble(st.nextToken()));
@@ -82,13 +82,48 @@ public class BivariatePanel extends JPanel implements ActionListener {
                 input2[i] = input2list.get(i);
             Arrays.sort(input2);
 
-            //draw scatterplot inside box
-
-            //draw residual plot inside box
-
             //draw statistics inside box
             g.drawString("Correlation Coefficient: "+Functions.calcCorrelCoef(input1, input2), 1110, 125);
             g.drawString("Coefficient of Determination:"+Functions.calcDetermCoef(input1, input2), 1110, 140);
+
+            //draw scatterplot inside box
+            double input1Min = Functions.calcMinimum(input1); //input 1 drawn along x axis
+            double input2Min = Functions.calcMinimum(input2);
+            double input1Max = Functions.calcMaximum(input1); //input 2 drawn along y axis
+            double input2Max = Functions.calcMaximum(input2);
+
+            int yMinPixel = 125;
+            int yMaxPixel = 445;
+            int xMinPixel = 25;
+            int xMaxPixel = 495;
+
+            g.drawLine(xMinPixel, yMinPixel, xMinPixel, yMaxPixel); //y axis
+            g.drawLine(xMinPixel, yMaxPixel, xMaxPixel, yMaxPixel); //x axis
+            g.setFont(new Font("Serif", Font.BOLD, 10));
+            for (int i = 0; i < 11; i++) { //draw 10 tick marks along y axis
+                g.drawLine(xMinPixel-5, yMinPixel+i*((yMaxPixel-yMinPixel)/10), xMinPixel, yMinPixel+i*((yMaxPixel-yMinPixel)/10));
+                String toDraw = input2Max-i*((input2Max-input2Min)/10)+"";
+                if (toDraw.length()>4)
+                    toDraw = toDraw.substring(0, 4);
+                g.drawString(toDraw, xMinPixel-12, yMinPixel+i*((yMaxPixel-yMinPixel)/10)-7);
+            }
+            for (int i = 0; i < 11; i++) { //draw 10 tick marks along the x axis
+                g.drawLine(xMinPixel+i*((xMaxPixel-xMinPixel)/10), yMaxPixel+5, xMinPixel+i*((xMaxPixel-xMinPixel)/10), yMaxPixel);
+                String toDraw = input1Min+i*((input1Max-input1Min)/10)+"";
+                if (toDraw.length()>4)
+                    toDraw = toDraw.substring(0, 4);
+                g.drawString(toDraw, xMinPixel+i*((xMaxPixel-xMinPixel)/10)-7, yMaxPixel+15);
+            }
+            int minLength = Math.min(input1.length, input2.length);
+            for (int i = 0; i < minLength; i++) {
+                int x = (int)(xMinPixel + (xMaxPixel-xMinPixel)*((input1[i]-input1Min)/(input1Max-input1Min)));
+                int y = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((input2[i]-input2Min)/(input2Max-input2Min)));
+                g.fillOval(x-5, y-5, 10, 10);
+            }
+
+            //draw residual plot inside box
+
+
         }
     }
 }

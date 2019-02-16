@@ -13,6 +13,9 @@ Open Source. Feel free to submit pull requests and improve the code. **Bug repor
     - [x] Add label indicating what the slider does
     - [x] Make it so that large number of columns changes interval at which labels are applied
 - [ ] Bivariate Analysis
-  - [ ] Scatterplot Box
+  - [x] Scatterplot Box
   - [ ] Residualplot Box
   - [x] Statistics Box
+- [ ] Functions
+  - [ ] Bivariate Functions
+  - [x] Univariate Functions
