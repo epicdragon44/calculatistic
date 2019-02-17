@@ -105,8 +105,35 @@ public class Functions {
     }
 
     //Coefficient of Correlation
-    public static double calcCorrelCoef(double[] input1, double[] input2) {                                             //TODO: Calculate Correlation Coefficient
-        return 0;
+    public static double calcCorrelCoef(double[] input1, double[] input2) {
+        int n = Math.min(input1.length, input2.length);
+        double sum_X = 0, sum_Y = 0, sum_XY = 0;
+        double squareSum_X = 0, squareSum_Y = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            // sum of elements of array X.
+            sum_X = sum_X + input1[i];
+
+            // sum of elements of array Y.
+            sum_Y = sum_Y + input2[i];
+
+            // sum of X[i] * Y[i].
+            sum_XY = sum_XY + input1[i] * input2[i];
+
+            // sum of square of array elements.
+            squareSum_X = squareSum_X + input1[i] * input1[i];
+            squareSum_Y = squareSum_Y + input2[i] * input2[i];
+        }
+
+        // use formula for calculating correlation
+        // coefficient.
+        double corr =   (n * sum_XY - sum_X * sum_Y)/
+                        (Math.sqrt((n * squareSum_X -
+                        sum_X * sum_X) * (n * squareSum_Y -
+                        sum_Y * sum_Y)));
+
+        return corr;
     }
 
     public static double calcDetermCoef(double[] input1, double[] input2) {
