@@ -154,10 +154,7 @@ class LinearRegression {
      * @throws IllegalArgumentException if the lengths of the two arrays are not equal
      */
     public LinearRegression(double[] x, double[] y) {
-        if (x.length != y.length) {
-            throw new IllegalArgumentException("array lengths are not equal");
-        }
-        int n = x.length;
+        int n = Math.min(x.length, y.length);
 
         // first pass
         double sumx = 0.0, sumy = 0.0, sumx2 = 0.0;
@@ -238,10 +235,26 @@ class LinearRegression {
     public double predict(double x) {
         return slope*x + intercept;
     }
+    public double reversePredict(double y) {
+        boolean found = false;
+        int upperLimit = Integer.MAX_VALUE;
+        int lowerLimit = 0;
+        while (!found) {
+            int med = (lowerLimit + upperLimit)/2;
+            if (Math.abs(predict(med)-y)<=1) return med;
+            else if (predict(med)>y) {
+                upperLimit = med;
+            }
+            else {
+                lowerLimit = med;
+            }
+        }
+        return -1;
+    }
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append(String.format("%.2f n + %.2f", slope(), intercept()));
-        s.append("  (R^2 = " + String.format("%.3f", R2()) + ")");
+        s.append(String.format("%.2f x + %.2f", slope(), intercept()));
         return s.toString();
     }
 }

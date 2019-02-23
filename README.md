@@ -3,6 +3,7 @@ A simple Java and Swing-based calculator to perform statistical analysis on univ
 Open Source. Feel free to submit pull requests and improve the code. **Bug reports are very welcome!**
 
 ![Screenshot](/Screenshots/Screenshot2.png)
+![Screenshot](/Screenshots/Screenshot3.png)
 
 ## Todo List
 - [x] Univariate Analysis
@@ -12,10 +13,10 @@ Open Source. Feel free to submit pull requests and improve the code. **Bug repor
     - [x] Add slider for number of columns shown
     - [x] Add label indicating what the slider does
     - [x] Make it so that large number of columns changes interval at which labels are applied
-- [ ] Bivariate Analysis
+- [x] Bivariate Analysis
   - [x] Scatterplot Box
-  - [ ] Residualplot Box
+  - [x] Residualplot Box
   - [x] Statistics Box
-- [ ] Functions
-  - [ ] Bivariate Functions
+- [x] Functions
+  - [x] Bivariate Functions
   - [x] Univariate Functions

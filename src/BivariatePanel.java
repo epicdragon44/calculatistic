@@ -17,10 +17,10 @@ public class BivariatePanel extends JPanel implements ActionListener {
         else
             setPreferredSize( new Dimension(1900, 15) );
         //init variables
-        field1 = new JTextField("Enter first variable numbers here, separated by spaces");
+        field1 = new JTextField("Enter first variable positive numbers here, separated by spaces");
         field1.setPreferredSize(new Dimension(1607, 25));
         field1.addFocusListener(new ClearFieldAction(field1));
-        field2 = new JTextField("Enter second variable numbers here, separated by spaces");
+        field2 = new JTextField("Enter second variable positive numbers here, separated by spaces");
         field2.setPreferredSize(new Dimension(1500, 25));
         field2.addFocusListener(new ClearFieldAction(field2));
         enter = new JButton("Enter");
@@ -126,8 +126,15 @@ public class BivariatePanel extends JPanel implements ActionListener {
             int x1 = xMinPixel;
             int y2 = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((regressLine.predict(Functions.calcMaximum(input1))-input2Min)/(input2Max-input2Min)));
             int x2 = xMaxPixel;
-            g.drawLine(x1, y1, x2, y2);
-            g.drawString("Regression Line: " + regressLine.toString(), xMinPixel, yMaxPixel+15);
+            if (y2 < yMinPixel) {
+                double slope = (y2+0.0-y1)/(x2+0.0-x1);
+                int intersectX = (int)(((yMinPixel+0.0-y2)/slope)+x2);
+                g.drawLine(x1, y1 , intersectX, yMinPixel);
+            } else {
+                g.drawLine(x1, y1, x2, y2);
+            }
+
+            g.drawString("Regression Line: " + regressLine.toString(), xMinPixel, yMaxPixel+45);
 
             //draw residual plot inside box
 
