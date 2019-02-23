@@ -106,10 +106,155 @@ public class Functions {
 
     //Coefficient of Correlation
     public static double calcCorrelCoef(double[] input1, double[] input2) {
-        return 0;
+        int n = Math.min(input1.length, input2.length);
+        double sum_X = 0, sum_Y = 0, sum_XY = 0;
+        double squareSum_X = 0, squareSum_Y = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            // sum of elements of array X.
+            sum_X = sum_X + input1[i];
+
+            // sum of elements of array Y.
+            sum_Y = sum_Y + input2[i];
+
+            // sum of X[i] * Y[i].
+            sum_XY = sum_XY + input1[i] * input2[i];
+
+            // sum of square of array elements.
+            squareSum_X = squareSum_X + input1[i] * input1[i];
+            squareSum_Y = squareSum_Y + input2[i] * input2[i];
+        }
+
+        // use formula for calculating correlation
+        // coefficient.
+        double corr =   (n * sum_XY - sum_X * sum_Y)/
+                        (Math.sqrt((n * squareSum_X -
+                        sum_X * sum_X) * (n * squareSum_Y -
+                        sum_Y * sum_Y)));
+
+        return corr;
     }
 
     public static double calcDetermCoef(double[] input1, double[] input2) {
         return Math.pow(calcCorrelCoef(input1, input2), 2);
+    }
+}
+
+class LinearRegression {
+    private final double intercept, slope;
+    private final double r2;
+    private final double svar0, svar1;
+
+    /**
+     * Performs a linear regression on the data points {@code (y[i], x[i])}.
+     *
+     * @param  x the values of the predictor variable
+     * @param  y the corresponding values of the response variable
+     * @throws IllegalArgumentException if the lengths of the two arrays are not equal
+     */
+    public LinearRegression(double[] x, double[] y) {
+        int n = Math.min(x.length, y.length);
+
+        // first pass
+        double sumx = 0.0, sumy = 0.0, sumx2 = 0.0;
+        for (int i = 0; i < n; i++) {
+            sumx  += x[i];
+            sumx2 += x[i]*x[i];
+            sumy  += y[i];
+        }
+        double xbar = sumx / n;
+        double ybar = sumy / n;
+
+        // second pass: compute summary statistics
+        double xxbar = 0.0, yybar = 0.0, xybar = 0.0;
+        for (int i = 0; i < n; i++) {
+            xxbar += (x[i] - xbar) * (x[i] - xbar);
+            yybar += (y[i] - ybar) * (y[i] - ybar);
+            xybar += (x[i] - xbar) * (y[i] - ybar);
+        }
+        slope  = xybar / xxbar;
+        intercept = ybar - slope * xbar;
+
+        // more statistical analysis
+        double rss = 0.0;      // residual sum of squares
+        double ssr = 0.0;      // regression sum of squares
+        for (int i = 0; i < n; i++) {
+            double fit = slope*x[i] + intercept;
+            rss += (fit - y[i]) * (fit - y[i]);
+            ssr += (fit - ybar) * (fit - ybar);
+        }
+
+        int degreesOfFreedom = n-2;
+        r2    = ssr / yybar;
+        double svar  = rss / degreesOfFreedom;
+        svar1 = svar / xxbar;
+        svar0 = svar/n + xbar*xbar*svar1;
+    }
+
+    /**
+     * @return the intercept of the line
+     */
+    public double intercept() {
+        return intercept;
+    }
+
+    /**
+     * @return the slope of the line
+     */
+    public double slope() {
+        return slope;
+    }
+
+    /**
+     * @return the coefficient of determination
+     *         which is a real number between 0 and 1
+     */
+    public double R2() {
+        return r2;
+    }
+
+    /**
+     * @return the standard error of the estimate for the intercept
+     */
+    public double interceptStdErr() {
+        return Math.sqrt(svar0);
+    }
+
+    /**
+     * @return the standard error of the estimate for the slope
+     */
+    public double slopeStdErr() {
+        return Math.sqrt(svar1);
+    }
+
+    /**
+     * @param x
+     * @return return predicted y value for a certain x value
+     */
+    public double predict(double x) {
+        return slope*x + intercept;
+    }
+    public double reversePredict(double y) {
+        boolean found = false;
+        int upperLimit = Integer.MAX_VALUE;
+        int lowerLimit = 0;
+        while (!found) {
+            int med = (lowerLimit + upperLimit)/2;
+            if (Math.abs(predict(med)-y)<=1) return med;
+            else if (predict(med)>y) {
+                upperLimit = med;
+            }
+            else {
+                lowerLimit = med;
+            }
+        }
+        return -1;
+    }
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append(String.format("%.2f x + %.2f", slope(), intercept()));
+        return s.toString();
     }
 }
