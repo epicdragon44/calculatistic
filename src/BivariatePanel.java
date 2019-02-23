@@ -127,10 +127,46 @@ public class BivariatePanel extends JPanel implements ActionListener {
             int y2 = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((regressLine.predict(Functions.calcMaximum(input1))-input2Min)/(input2Max-input2Min)));
             int x2 = xMaxPixel;
             g.drawLine(x1, y1, x2, y2);
+            g.drawString("Regression Line: " + regressLine.toString(), xMinPixel, yMaxPixel+15);
 
             //draw residual plot inside box
 
+            double[] residuals = new double[minLength];
+            for (int i = 0; i < minLength; i++) {
+                residuals[i] = input2[i] - regressLine.predict(input1[i]);
+            }
 
+            double residualMax = Functions.calcMaximum(residuals); //input 2 drawn along y axis
+            double residualMin = Functions.calcMinimum(residuals);
+
+            yMinPixel = 125;
+            yMaxPixel = 445;
+            xMinPixel = 575;
+            xMaxPixel = 1025;
+            int yMedPixel = (yMaxPixel+yMinPixel)/2;
+
+            g.drawLine(xMinPixel, yMinPixel, xMinPixel, yMaxPixel); //y axis
+            g.drawLine(xMinPixel, yMedPixel, xMaxPixel, yMedPixel); //x axis
+            g.setFont(new Font("Serif", Font.BOLD, 10));
+            for (int i = 0; i < 11; i++) { //draw 10 tick marks along y axis
+                g.drawLine(xMinPixel-5, yMinPixel+i*((yMaxPixel-yMinPixel)/10), xMinPixel, yMinPixel+i*((yMaxPixel-yMinPixel)/10));
+                String toDraw = residualMax-i*((residualMax-residualMin)/10)+"";
+                if (toDraw.length()>4)
+                    toDraw = toDraw.substring(0, 4);
+                g.drawString(toDraw, xMinPixel-12, yMinPixel+i*((yMaxPixel-yMinPixel)/10)-7);
+            }
+            for (int i = 0; i < 11; i++) { //draw 10 tick marks along the x axis
+                g.drawLine(xMinPixel+i*((xMaxPixel-xMinPixel)/10), yMedPixel+5, xMinPixel+i*((xMaxPixel-xMinPixel)/10), yMedPixel);
+                String toDraw = input1Min+i*((input1Max-input1Min)/10)+"";
+                if (toDraw.length()>4)
+                    toDraw = toDraw.substring(0, 4);
+                g.drawString(toDraw, xMinPixel+i*((xMaxPixel-xMinPixel)/10)-7, yMedPixel+15);
+            }
+            for (int i = 0; i < minLength; i++) {
+                int x = (int)(xMinPixel + (xMaxPixel-xMinPixel)*((input1[i]-input1Min)/(input1Max-input1Min)));
+                int y = (int)(yMedPixel - (yMaxPixel-yMinPixel)*((residuals[i]-input2Min)/(input2Max-input2Min)));
+                g.fillOval(x-5, y-5, 10, 10);
+            }
         }
     }
 }
