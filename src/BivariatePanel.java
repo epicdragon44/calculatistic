@@ -70,7 +70,7 @@ public class BivariatePanel extends JPanel implements ActionListener {
             double[] input1 = new double[input1list.size()];
             for (int i = 0; i < input1.length; i++)
                 input1[i] = input1list.get(i);
-            Arrays.sort(input1);
+            /*Arrays.sort(input1);*/
 
             ArrayList<Double> input2list = new ArrayList<>();
             String typedInput2 = field2.getText();
@@ -80,7 +80,7 @@ public class BivariatePanel extends JPanel implements ActionListener {
             double[] input2 = new double[input2list.size()];
             for (int i = 0; i < input2.length; i++)
                 input2[i] = input2list.get(i);
-            Arrays.sort(input2);
+            /*Arrays.sort(input2);*/
 
             //draw statistics inside box
             g.drawString("Correlation Coefficient: "+Functions.calcCorrelCoef(input1, input2), 1110, 125);
@@ -171,7 +171,7 @@ public class BivariatePanel extends JPanel implements ActionListener {
             }
             for (int i = 0; i < minLength; i++) {
                 int x = (int)(xMinPixel + (xMaxPixel-xMinPixel)*((input1[i]-input1Min)/(input1Max-input1Min)));
-                int y = (int)(yMedPixel - (yMaxPixel-yMinPixel)*((residuals[i]-input2Min)/(input2Max-input2Min)));
+                int y = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((residuals[i]-residualMin)/(residualMax-residualMin)));
                 g.fillOval(x-5, y-5, 10, 10);
             }
         }
