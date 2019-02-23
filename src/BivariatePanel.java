@@ -121,6 +121,13 @@ public class BivariatePanel extends JPanel implements ActionListener {
                 g.fillOval(x-5, y-5, 10, 10);
             }
 
+            LinearRegression regressLine = new LinearRegression(input1, input2);
+            int y1 = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((regressLine.predict(Functions.calcMinimum(input1))-input2Min)/(input2Max-input2Min)));
+            int x1 = xMinPixel;
+            int y2 = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((regressLine.predict(Functions.calcMaximum(input1))-input2Min)/(input2Max-input2Min)));
+            int x2 = xMaxPixel;
+            g.drawLine(x1, y1, x2, y2);
+
             //draw residual plot inside box
 
 
