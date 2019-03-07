@@ -2,7 +2,7 @@
 A simple Java and Swing-based calculator to perform statistical analysis on univariate and bivariate data.
 Open Source. Feel free to submit pull requests and improve the code. **Bug reports are very welcome!**
 
-![Screenshot](/Screenshots/Screenshot2.png)
+![Screenshot](/Screenshots/Screenshot4.png)
 ![Screenshot](/Screenshots/Screenshot3.png)
 
 ## Todo List
@@ -20,3 +20,6 @@ Open Source. Feel free to submit pull requests and improve the code. **Bug repor
 - [x] Functions
   - [x] Bivariate Functions
   - [x] Univariate Functions
+  
+## Bugs
+- [ ] Regression line often exceeds display box

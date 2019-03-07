@@ -174,6 +174,9 @@ public class BivariatePanel extends JPanel implements ActionListener {
                 int y = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((residuals[i]-residualMin)/(residualMax-residualMin)));
                 g.fillOval(x-5, y-5, 10, 10);
             }
+
+            g.setColor(Color.MAGENTA);
+            g.drawString("For special cases such as data that lies perfectly on the regression line, the residual plot may not be accurate.", xMinPixel, yMaxPixel+35);
         }
     }
 }
