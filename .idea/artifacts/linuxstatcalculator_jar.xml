@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="linuxstatcalculator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/linuxstatcalculator_jar</output-path>
+    <root id="archive" name="linuxstatcalculator.jar">
+      <element id="module-output" name="linuxstatcalculator" />
+    </root>
+  </artifact>
+</component>
