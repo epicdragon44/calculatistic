@@ -9,6 +9,9 @@ public class BivariatePanel extends JPanel implements ActionListener {
     private JTextField field1;
     private JTextField field2;
     private JButton enter;
+    private JToggleButton toggle;
+
+    private boolean showRegression;
     //CONSTRUCTOR
     public BivariatePanel(boolean expanded) {
         //set size
@@ -27,6 +30,9 @@ public class BivariatePanel extends JPanel implements ActionListener {
         enter.setPreferredSize(new Dimension(100, 25));
         enter.setBackground(Color.LIGHT_GRAY);
         enter.addActionListener(this);
+        toggle = new JToggleButton("Show Regression", false);
+        toggle.setPreferredSize(new Dimension(300, 25));
+        toggle.addActionListener(new ToggleSensor(this));
 
         //draw border
         TitledBorder title = BorderFactory.createTitledBorder("Bivariate Analysis");
@@ -39,11 +45,18 @@ public class BivariatePanel extends JPanel implements ActionListener {
         add(field1);
         add(field2);
         add(enter);
+        add(toggle);
     }
 
     //MOUSE ACTION METHODS
     @Override
     public void actionPerformed(ActionEvent e) {
+        repaint();
+    }
+
+    protected void toggleRegression() {
+        showRegression = !showRegression;
+        paint(this.getGraphics());
         repaint();
     }
 
@@ -70,7 +83,6 @@ public class BivariatePanel extends JPanel implements ActionListener {
             double[] input1 = new double[input1list.size()];
             for (int i = 0; i < input1.length; i++)
                 input1[i] = input1list.get(i);
-            /*Arrays.sort(input1);*/
 
             ArrayList<Double> input2list = new ArrayList<>();
             String typedInput2 = field2.getText();
@@ -80,7 +92,6 @@ public class BivariatePanel extends JPanel implements ActionListener {
             double[] input2 = new double[input2list.size()];
             for (int i = 0; i < input2.length; i++)
                 input2[i] = input2list.get(i);
-            /*Arrays.sort(input2);*/
 
             //draw statistics inside box
             g.drawString("Correlation Coefficient: "+Functions.calcCorrelCoef(input1, input2), 1110, 125);
@@ -121,62 +132,60 @@ public class BivariatePanel extends JPanel implements ActionListener {
                 g.fillOval(x-5, y-5, 10, 10);
             }
 
-            LinearRegression regressLine = new LinearRegression(input1, input2);
-            int y1 = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((regressLine.predict(Functions.calcMinimum(input1))-input2Min)/(input2Max-input2Min)));
-            int x1 = xMinPixel;
-            int y2 = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((regressLine.predict(Functions.calcMaximum(input1))-input2Min)/(input2Max-input2Min)));
-            int x2 = xMaxPixel;
-            if (y2 < yMinPixel) {
-                double slope = (y2+0.0-y1)/(x2+0.0-x1);
-                int intersectX = (int)(((yMinPixel+0.0-y2)/slope)+x2);
-                g.drawLine(x1, y1 , intersectX, yMinPixel);
-            } else {
-                g.drawLine(x1, y1, x2, y2);
+            if (showRegression) {
+                LinearRegression regressLine = new LinearRegression(input1, input2);
+                int y1 = (int) (yMaxPixel - (yMaxPixel - yMinPixel) * ((regressLine.predict(Functions.calcMinimum(input1)) - input2Min) / (input2Max - input2Min)));
+                int x1 = xMinPixel;
+                int y2 = (int) (yMaxPixel - (yMaxPixel - yMinPixel) * ((regressLine.predict(Functions.calcMaximum(input1)) - input2Min) / (input2Max - input2Min)));
+                int x2 = xMaxPixel;
+                if (y2 < yMinPixel) {
+                    double slope = (y2 + 0.0 - y1) / (x2 + 0.0 - x1);
+                    int intersectX = (int) (((yMinPixel + 0.0 - y2) / slope) + x2);
+                    g.drawLine(x1, y1, intersectX, yMinPixel);
+                } else if (y2 > yMaxPixel) {
+                    int intersectX = (int)((yMaxPixel+0.0-y1)*((x2+0.0-x1)/(y2+0.0-y1))+0.0+x1);
+                    g.drawLine(x1, y1, intersectX, yMaxPixel);
+                } else {
+                    g.drawLine(x1, y1, x2, y2);
+                }
+                g.drawString("Regression Line: " + regressLine.toString(), xMinPixel, yMaxPixel + 45);
+
+                //draw residual plot inside box
+
+                double[] residuals = new double[minLength];
+                for (int i = 0; i < minLength; i++) {
+                    residuals[i] = input2[i] - regressLine.predict(input1[i]);
+                }
+                double residualMax = Functions.calcMaximum(residuals); //input 2 drawn along y axis
+                double residualMin = Functions.calcMinimum(residuals);
+                yMinPixel = 125;
+                yMaxPixel = 445;
+                xMinPixel = 575;
+                xMaxPixel = 1025;
+                int yMedPixel = (yMaxPixel + yMinPixel) / 2;
+                g.drawLine(xMinPixel, yMinPixel, xMinPixel, yMaxPixel); //y axis
+                g.drawLine(xMinPixel, yMedPixel, xMaxPixel, yMedPixel); //x axis
+                g.setFont(new Font("Serif", Font.BOLD, 10));
+                for (int i = 0; i < 11; i++) { //draw 10 tick marks along y axis
+                    g.drawLine(xMinPixel - 5, yMinPixel + i * ((yMaxPixel - yMinPixel) / 10), xMinPixel, yMinPixel + i * ((yMaxPixel - yMinPixel) / 10));
+                    String toDraw = residualMax - i * ((residualMax - residualMin) / 10) + "";
+                    if (toDraw.length() > 4)
+                        toDraw = toDraw.substring(0, 4);
+                    g.drawString(toDraw, xMinPixel - 12, yMinPixel + i * ((yMaxPixel - yMinPixel) / 10) - 7);
+                }
+                for (int i = 0; i < 11; i++) { //draw 10 tick marks along the x axis
+                    g.drawLine(xMinPixel + i * ((xMaxPixel - xMinPixel) / 10), yMedPixel + 5, xMinPixel + i * ((xMaxPixel - xMinPixel) / 10), yMedPixel);
+                    String toDraw = input1Min + i * ((input1Max - input1Min) / 10) + "";
+                    if (toDraw.length() > 4)
+                        toDraw = toDraw.substring(0, 4);
+                    g.drawString(toDraw, xMinPixel + i * ((xMaxPixel - xMinPixel) / 10) - 7, yMedPixel + 15);
+                }
+                for (int i = 0; i < minLength; i++) {
+                    int x = (int) (xMinPixel + (xMaxPixel - xMinPixel) * ((input1[i] - input1Min) / (input1Max - input1Min)));
+                    int y = (int) (yMaxPixel - (yMaxPixel - yMinPixel) * ((residuals[i] - residualMin) / (residualMax - residualMin)));
+                    g.fillOval(x - 5, y - 5, 10, 10);
+                }
             }
-
-            g.drawString("Regression Line: " + regressLine.toString(), xMinPixel, yMaxPixel+45);
-
-            //draw residual plot inside box
-
-            double[] residuals = new double[minLength];
-            for (int i = 0; i < minLength; i++) {
-                residuals[i] = input2[i] - regressLine.predict(input1[i]);
-            }
-
-            double residualMax = Functions.calcMaximum(residuals); //input 2 drawn along y axis
-            double residualMin = Functions.calcMinimum(residuals);
-
-            yMinPixel = 125;
-            yMaxPixel = 445;
-            xMinPixel = 575;
-            xMaxPixel = 1025;
-            int yMedPixel = (yMaxPixel+yMinPixel)/2;
-
-            g.drawLine(xMinPixel, yMinPixel, xMinPixel, yMaxPixel); //y axis
-            g.drawLine(xMinPixel, yMedPixel, xMaxPixel, yMedPixel); //x axis
-            g.setFont(new Font("Serif", Font.BOLD, 10));
-            for (int i = 0; i < 11; i++) { //draw 10 tick marks along y axis
-                g.drawLine(xMinPixel-5, yMinPixel+i*((yMaxPixel-yMinPixel)/10), xMinPixel, yMinPixel+i*((yMaxPixel-yMinPixel)/10));
-                String toDraw = residualMax-i*((residualMax-residualMin)/10)+"";
-                if (toDraw.length()>4)
-                    toDraw = toDraw.substring(0, 4);
-                g.drawString(toDraw, xMinPixel-12, yMinPixel+i*((yMaxPixel-yMinPixel)/10)-7);
-            }
-            for (int i = 0; i < 11; i++) { //draw 10 tick marks along the x axis
-                g.drawLine(xMinPixel+i*((xMaxPixel-xMinPixel)/10), yMedPixel+5, xMinPixel+i*((xMaxPixel-xMinPixel)/10), yMedPixel);
-                String toDraw = input1Min+i*((input1Max-input1Min)/10)+"";
-                if (toDraw.length()>4)
-                    toDraw = toDraw.substring(0, 4);
-                g.drawString(toDraw, xMinPixel+i*((xMaxPixel-xMinPixel)/10)-7, yMedPixel+15);
-            }
-            for (int i = 0; i < minLength; i++) {
-                int x = (int)(xMinPixel + (xMaxPixel-xMinPixel)*((input1[i]-input1Min)/(input1Max-input1Min)));
-                int y = (int)(yMaxPixel - (yMaxPixel-yMinPixel)*((residuals[i]-residualMin)/(residualMax-residualMin)));
-                g.fillOval(x-5, y-5, 10, 10);
-            }
-
-            g.setColor(Color.MAGENTA);
-            g.drawString("For special cases such as data that lies perfectly on the regression line, the residual plot may not be accurate.", xMinPixel, yMaxPixel+35);
         }
     }
 }

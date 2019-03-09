@@ -22,4 +22,5 @@ Open Source. Feel free to submit pull requests and improve the code. **Bug repor
   - [x] Univariate Functions
   
 ## Bugs
-- [ ] Regression line often exceeds display box
+- [x] Regression line often exceeds display box
+- [ ] Residual plot is not accurate
