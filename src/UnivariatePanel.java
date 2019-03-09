@@ -37,7 +37,7 @@ public class UnivariatePanel extends JPanel implements ActionListener {
         this.setBorder(title);
 
         //set layout
-        setLayout(new FlowLayout());
+        setLayout(new FlowLayout(FlowLayout.LEFT));
 
         //add init variables
         add(field);
@@ -59,7 +59,7 @@ public class UnivariatePanel extends JPanel implements ActionListener {
     //DRAW THE GRAPHS
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawString("Slide to change number of columns in histogram:", 385, 67);
+        g.drawString("Slide to change number of columns in histogram", 525, 67);
         //draw a histogram
         g.drawString("Histogram", 10, 100);
         g.drawRect(10, 110, 500, 350);

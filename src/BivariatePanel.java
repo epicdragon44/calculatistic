@@ -31,7 +31,7 @@ public class BivariatePanel extends JPanel implements ActionListener {
         enter.setBackground(Color.LIGHT_GRAY);
         enter.addActionListener(this);
         toggle = new JToggleButton("Show Regression", false);
-        toggle.setPreferredSize(new Dimension(300, 25));
+        toggle.setPreferredSize(new Dimension(300, 20));
         toggle.addActionListener(new ToggleSensor(this));
 
         //draw border
@@ -39,12 +39,16 @@ public class BivariatePanel extends JPanel implements ActionListener {
         this.setBorder(title);
 
         //set layout
-        setLayout(new FlowLayout());
+        setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JPanel buffer = new JPanel();
+        buffer.setPreferredSize(new Dimension(1900, 375));
 
         //add init variables
         add(field1);
         add(field2);
         add(enter);
+        add(buffer);
         add(toggle);
     }
 
@@ -148,7 +152,7 @@ public class BivariatePanel extends JPanel implements ActionListener {
                 } else {
                     g.drawLine(x1, y1, x2, y2);
                 }
-                g.drawString("Regression Line: " + regressLine.toString(), xMinPixel, yMaxPixel + 45);
+                g.drawString("Regression Line: " + regressLine.toString(), xMinPixel+300, yMaxPixel + 30);
 
                 //draw residual plot inside box
 
@@ -180,9 +184,19 @@ public class BivariatePanel extends JPanel implements ActionListener {
                         toDraw = toDraw.substring(0, 4);
                     g.drawString(toDraw, xMinPixel + i * ((xMaxPixel - xMinPixel) / 10) - 7, yMedPixel + 15);
                 }
+
                 for (int i = 0; i < minLength; i++) {
                     int x = (int) (xMinPixel + (xMaxPixel - xMinPixel) * ((input1[i] - input1Min) / (input1Max - input1Min)));
-                    int y = (int) (yMaxPixel - (yMaxPixel - yMinPixel) * ((residuals[i] - residualMin) / (residualMax - residualMin)));
+                    int y = yMedPixel; //only stays this if residual==0
+
+                    if (residuals[i] > 0) {
+                        double prop = (residualMax+0.0-residuals[i])/(residualMax+0.0);
+                        y = (int)(prop * (yMedPixel-yMinPixel) + yMinPixel);
+                    } else if (residuals[i] < 0) {
+                        double prop = (residuals[i]+0.0-residualMin)/(Math.abs(residualMin));
+                        y = (int)(prop * (yMaxPixel-yMedPixel) + yMedPixel);
+                    }
+
                     g.fillOval(x - 5, y - 5, 10, 10);
                 }
             }
