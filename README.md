@@ -23,4 +23,4 @@ Open Source. Feel free to submit pull requests and improve the code. **Bug repor
   
 ## Bugs
 - [x] Regression line often exceeds display box
-- [ ] Residual plot is not accurate
+- [x] Residual plot is not accurate
