@@ -145,13 +145,25 @@ public class BivariatePanel extends JPanel implements ActionListener {
                 if (y2 < yMinPixel) {
                     double slope = (y2 + 0.0 - y1) / (x2 + 0.0 - x1);
                     int intersectX = (int) (((yMinPixel + 0.0 - y2) / slope) + x2);
-                    g.drawLine(x1, y1, intersectX, yMinPixel);
-                } else if (y2 > yMaxPixel) {
-                    int intersectX = (int)((yMaxPixel+0.0-y1)*((x2+0.0-x1)/(y2+0.0-y1))+0.0+x1);
-                    g.drawLine(x1, y1, intersectX, yMaxPixel);
-                } else {
-                    g.drawLine(x1, y1, x2, y2);
+                    x2 = intersectX;
+                    y2 = yMinPixel;
                 }
+                if (y2 > yMaxPixel) {
+                    int intersectX = (int)((yMaxPixel+0.0-y1)*((x2+0.0-x1)/(y2+0.0-y1))+0.0+x1);
+                    x2 = intersectX;
+                    y2 = yMaxPixel;
+                }
+                if (y1 < yMinPixel) {
+                    int intersectX = (int)(x1+0.0- ((y1+0.0 - yMinPixel)*((x1+0.0-x2)/(y1+0.0-y2))));
+                    x1 = intersectX;
+                    y1 = yMinPixel;
+                }
+                if (y1 > yMaxPixel) {
+                    int intersectX = (int)(x2+0.0 - ((y2+0.0-yMaxPixel)*((x2+0.0-x1)/(y2+0.0-y1))));
+                    x1 = intersectX;
+                    y1 = yMaxPixel;
+                }
+                g.drawLine(x1, y1, x2, y2);
                 g.drawString("Regression Line: " + regressLine.toString(), xMinPixel+300, yMaxPixel + 30);
 
                 //draw residual plot inside box
