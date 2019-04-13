@@ -26,7 +26,7 @@ public class UnivariatePanel extends JPanel implements ActionListener {
         enter = new JButton("Enter");
         enter.setBackground(Color.LIGHT_GRAY);
         enter.addActionListener(this);
-        slider = new JSlider(10, 50, 15);
+        slider = new JSlider(5, 50, 15);
         numOfCols = slider.getValue();
         slider.addChangeListener(new SliderShiftSensor(this, slider));
         slider.setPreferredSize(new Dimension(500, 25));
@@ -59,7 +59,8 @@ public class UnivariatePanel extends JPanel implements ActionListener {
     //DRAW THE GRAPHS
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawString("Slide to change number of columns in histogram", 525, 67);
+        g.drawString("Slide to change number of columns in histogram. ", 525, 67);
+        g.drawString("NOTE: if visual errors appear, there may have been an error processing the asked-for number of bars given the dataset. Everything that is displayed is still perfectly valid. The larger the dataset, the less likely this will occur.", 525, 80);
         //draw a histogram
         g.drawString("Histogram", 10, 100);
         g.drawRect(10, 110, 500, 350);
@@ -136,27 +137,7 @@ public class UnivariatePanel extends JPanel implements ActionListener {
                 g.drawString(label, pixelBrackets[0] - 22, 115 + 62 * i + 10);
             }
 
-            //draw boxplot inside box
             g.setColor(Color.BLACK);
-            g.drawLine(575, 275, 1025, 275);
-            g.drawLine(575, 200, 575,350);
-            g.drawString(Functions.calcMinimum(input)+"", 575, 375);
-            g.drawLine(1025, 200, 1025, 350);
-            g.drawString(Functions.calcMaximum(input)+"", 1025, 375);
-            int leftX = (int)(((Functions.calcFirstQ(input)/Functions.calcMaximum(input))*450)+575);
-            int rightX = (int)(((Functions.calcThirdQ(input)/Functions.calcMaximum(input))*450)+575);
-            int midX = (int)(((Functions.calcMedian(input)/Functions.calcMaximum(input))*450)+575);
-            g.setColor(new Color(238, 238, 238));
-            g.fillRect(leftX, 200, rightX-leftX, 150);
-            g.setColor(Color.BLACK);
-            g.drawLine(leftX, 200, leftX, 350);
-            g.drawString(Functions.calcFirstQ(input)+"", leftX, 375);
-            g.drawLine(rightX, 200, rightX, 350);
-            g.drawLine(leftX, 200, rightX, 200);
-            g.drawLine(leftX, 350, rightX, 350);
-            g.drawString(Functions.calcThirdQ(input)+"", rightX, 375);
-            g.drawLine(midX, 200, midX, 350);
-            g.drawString(Functions.calcMedian(input)+"", midX, 375);
 
             //draw statistics inside box
             g.drawString("Five # Summary: "+Functions.calcMinimum(input)+" "+Functions.calcFirstQ(input)+" "+Functions.calcMedian(input)+" "+Functions.calcThirdQ(input)+" "+Functions.calcMaximum(input), 1110, 125);
@@ -169,6 +150,61 @@ public class UnivariatePanel extends JPanel implements ActionListener {
             g.drawString("Set of Outliers: " + Functions.calcOutliers(input), 1110, 230);
             g.drawString("Sum: " + Functions.calcSum(input), 1110, 245);
             g.drawString("Range: "+Functions.calcRange(input), 1110, 260);
+
+            double origRange = Functions.calcRange(input);
+            double origMed = Functions.calcMedian(input);
+            double origMin = Functions.calcMinimum(input);
+
+            //draw boxplot inside box
+                //first, remove outliers (will draw them separately)
+            Set<Double> outliers = Functions.calcOutliers(input);
+            for (Double d : outliers) {
+                input = removeDouble(input, d);
+            }
+            g.setColor(Color.BLACK);
+            int lowXBound = (int)(575+(1025-575)*((Functions.calcMinimum(input)-origMin)/origRange));
+            int highXBound = (int)(575+(1025-575)*((Functions.calcMaximum(input)-origMin)/origRange));
+            int xDiff = highXBound - lowXBound;
+
+                //draw outliers
+            for (Double d : outliers) {
+                int pixelpos = (int)(575+(1025-575)*((d-origMin)/origRange));
+                g.fillOval(pixelpos, 275, 5, 5);
+                g.drawString(d.toString().substring(0, Math.min(4, d.toString().length())), pixelpos, 375);
+            }
+
+            //draw the rest of the boxplot
+            g.drawLine(lowXBound, 275, highXBound, 275);
+            g.drawLine(lowXBound, 200, lowXBound,350);
+            g.drawString(Functions.calcMinimum(input)+"", lowXBound, 375);
+            g.drawLine(highXBound, 200, highXBound, 350);
+            g.drawString(Functions.calcMaximum(input)+"", highXBound, 375);
+            int leftX = (int)(((Functions.calcFirstQ(input)/Functions.calcMaximum(input))*xDiff)+lowXBound);
+            int rightX = (int)(((Functions.calcThirdQ(input)/Functions.calcMaximum(input))*xDiff)+lowXBound);
+            int midX = (int)(((Functions.calcMedian(input)/Functions.calcMaximum(input))*xDiff)+lowXBound);
+            g.setColor(new Color(238, 238, 238));
+            g.fillRect(leftX, 200, rightX-leftX, 150);
+            g.setColor(Color.BLACK);
+            g.drawLine(leftX, 200, leftX, 350);
+            g.drawString(Functions.calcFirstQ(input)+"", leftX, 375);
+            g.drawLine(rightX, 200, rightX, 350);
+            g.drawLine(leftX, 200, rightX, 200);
+            g.drawLine(leftX, 350, rightX, 350);
+            g.drawString(Functions.calcThirdQ(input)+"", rightX, 375);
+            g.drawLine(midX, 200, midX, 350);
+            g.drawString(Functions.calcMedian(input)+"", midX, 375);
         }
+    }
+
+    private double[] removeDouble(double[] input, double toRemove) {
+        double[] output = new double[input.length-1];
+        int counter = 0;
+        for (int i = 0; i < input.length; i++) {
+            double d = input[i];
+            if (d!=toRemove) {
+                output[counter++] = d;
+            }
+        }
+        return output;
     }
 }

@@ -7,8 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a6a9c36-062b-49d5-8802-f1b465fef789" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Screenshots/Screenshot8.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BivariatePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BivariatePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/linuxstatcalculator/META-INF/linuxstatcalculator.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/linuxstatcalculator/UnivariatePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/linuxstatcalculator/UnivariatePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Functions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UnivariatePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UnivariatePanel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,16 +23,17 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="285">
-                <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-              </first_editor>
-              <second_editor />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -34,8 +41,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TestFileGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+            <state relative-caret-position="256">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BivariatePanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-617">
+              <caret line="136" column="13" lean-forward="true" selection-start-line="136" selection-start-column="13" selection-end-line="136" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -44,22 +63,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/BivariatePanel.java">
+        <entry file="file://$PROJECT_DIR$/src/UnivariatePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="158" column="35" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="198">
+              <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UnivariatePanel.java">
+        <entry file="file://$PROJECT_DIR$/src/Functions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
+            <state relative-caret-position="98">
+              <caret line="143" column="169" selection-start-line="143" selection-start-column="169" selection-end-line="143" selection-end-column="169" />
             </state>
           </provider>
         </entry>
@@ -67,7 +83,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ToggleSensor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
+            <state relative-caret-position="112">
               <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -81,7 +97,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SliderShiftSensor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
+            <state relative-caret-position="112">
               <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
             </state>
           </provider>
@@ -99,6 +115,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>residualMin</find>
+      <find>575</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,17 +128,18 @@
         <option value="$PROJECT_DIR$/src/ClearFieldAction.java" />
         <option value="$PROJECT_DIR$/src/SliderShiftSensor.java" />
         <option value="$PROJECT_DIR$/src/ToggleSensor.java" />
-        <option value="$PROJECT_DIR$/src/UnivariatePanel.java" />
         <option value="$PROJECT_DIR$/src/TestFileGenerator.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/BivariatePanel.java" />
+        <option value="$PROJECT_DIR$/src/Functions.java" />
+        <option value="$PROJECT_DIR$/src/UnivariatePanel.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="964" />
-    <option name="width" value="956" />
-    <option name="height" value="1050" />
+    <option name="x" value="963" />
+    <option name="width" value="957" />
+    <option name="height" value="1051" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -133,37 +151,18 @@
         <subPane>
           <expand>
             <path>
-              <item name="linuxstatcalculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="linuxstatcalculator" type="462c0819:PsiDirectoryNode" />
+              <item name="calculatistic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="calculatistic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="linuxstatcalculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="linuxstatcalculator" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="calculatistic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="calculatistic" type="462c0819:PsiDirectoryNode" />
+              <item name="Screenshots" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="linuxstatcalculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="linuxstatcalculator" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="linuxstatcalculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="linuxstatcalculator" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
-              <item name="linuxstatcalculator_jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="linuxstatcalculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="linuxstatcalculator" type="462c0819:PsiDirectoryNode" />
+              <item name="calculatistic" type="b2602c69:ProjectViewProjectNode" />
+              <item name="calculatistic" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="linuxstatcalculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="linuxstatcalculator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Functions.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
@@ -173,7 +172,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552145978282" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -226,10 +227,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="0" width="1928" height="1054" extended-state="6" />
+    <frame x="-7" y="-7" width="1753" height="954" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20864461" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21120945" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -238,7 +239,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23318872" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.18104495" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -306,13 +307,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/input.txt" />
-    <entry file="file://$PROJECT_DIR$/src/Functions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="865">
-          <caret line="113" column="5" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ClearFieldAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -327,41 +321,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="285">
-            <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TestFileGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UnivariatePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ToggleSensor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
+        <state relative-caret-position="112">
           <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -373,18 +335,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SliderShiftSensor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
+        <state relative-caret-position="112">
           <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BivariatePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="158" column="35" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
+        <state relative-caret-position="-617">
+          <caret line="136" column="13" lean-forward="true" selection-start-line="136" selection-start-column="13" selection-end-line="136" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestFileGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Functions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="143" column="169" selection-start-line="143" selection-start-column="169" selection-end-line="143" selection-end-column="169" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Screenshots/Screenshot6.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Screenshots/Screenshot5.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Screenshots/Screenshot8.PNG">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UnivariatePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
         </state>
       </provider>
     </entry>
