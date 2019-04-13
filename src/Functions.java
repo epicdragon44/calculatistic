@@ -141,7 +141,7 @@ public class Functions {
     }
 }
 
-class LinearRegression {
+class LinearRegression { //I took this class from some source somewhere online and I forgot where. If you want to claim credit please go ahead - I'd like to give credit.
     private final double intercept, slope;
     private final double r2;
     private final double svar0, svar1;
