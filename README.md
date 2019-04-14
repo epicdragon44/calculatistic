@@ -2,7 +2,7 @@
 A simple Java and Swing-based calculator to perform statistical analysis on univariate and bivariate data.
 Open Source. Feel free to submit pull requests and improve the code. **Bug reports are very welcome!**
 
-![Screenshot](/Screenshots/Screenshot8.PNG)
+![Screenshot](/Screenshots/Screenshot9.PNG)
 ![Screenshot](/Screenshots/Screenshot6.png)
 ![Screenshot](/Screenshots/Screenshot7.png)
 
