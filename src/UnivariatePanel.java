@@ -60,7 +60,6 @@ public class UnivariatePanel extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         g.drawString("Slide to change number of columns in histogram. ", 525, 67);
-        g.drawString("NOTE: if visual errors appear, there may have been an error processing the asked-for number of bars given the dataset. Everything that is displayed is still perfectly valid. The larger the dataset, the less likely this will occur.", 525, 80);
         //draw a histogram
         g.drawString("Histogram", 10, 100);
         g.drawRect(10, 110, 500, 350);
@@ -104,14 +103,19 @@ public class UnivariatePanel extends JPanel implements ActionListener {
                         toDraw = toDraw.substring(0, 5) + "";
                     g.drawString(toDraw, pixelBrackets[i] - 15, 445);
                 }
-                else
-                    count = count%(slider.getValue()/10);
+                else {
+                    try {
+                        count = count % (slider.getValue() / 10);
+                    } catch (ArithmeticException e) {
+                        slider.setValue(slider.getValue()+1);
+                    }
+                }
             }
             int[] freqCount = new int[numOfCols];
             for (int i = 1; i < brackets.length; i++) {
                 for (double num : input) {
-                    if (num >= brackets[i-1] && num<brackets[i]) {
-                        freqCount[i-1]++;
+                    if (num >= brackets[i - 1] && num < brackets[i]) {
+                        freqCount[i - 1]++;
                     }
                 }
             }
