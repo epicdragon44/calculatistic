@@ -114,7 +114,7 @@ public class BivariatePanel extends JPanel implements ActionListener {
 
             g.drawLine(xMinPixel, yMinPixel, xMinPixel, yMaxPixel); //y axis
             g.drawLine(xMinPixel, yMaxPixel, xMaxPixel, yMaxPixel); //x axis
-            g.setFont(new Font("Serif", Font.BOLD, 10));
+            g.setFont(new Font("Ubuntu Mono", Font.BOLD, 10));
             for (int i = 0; i < 11; i++) { //draw 10 tick marks along y axis
                 g.drawLine(xMinPixel-5, yMinPixel+i*((yMaxPixel-yMinPixel)/10), xMinPixel, yMinPixel+i*((yMaxPixel-yMinPixel)/10));
                 String toDraw = input2Max-i*((input2Max-input2Min)/10)+"";
@@ -181,7 +181,7 @@ public class BivariatePanel extends JPanel implements ActionListener {
                 int yMedPixel = (yMaxPixel + yMinPixel) / 2;
                 g.drawLine(xMinPixel, yMinPixel, xMinPixel, yMaxPixel); //y axis
                 g.drawLine(xMinPixel, yMedPixel, xMaxPixel, yMedPixel); //x axis
-                g.setFont(new Font("Serif", Font.BOLD, 10));
+                g.setFont(new Font("Ubuntu Mono", Font.BOLD, 10));
                 for (int i = 0; i < 11; i++) { //draw 10 tick marks along y axis
                     g.drawLine(xMinPixel - 5, yMinPixel + i * ((yMaxPixel - yMinPixel) / 10), xMinPixel, yMinPixel + i * ((yMaxPixel - yMinPixel) / 10));
                     String toDraw = residualMax - i * ((residualMax - residualMin) / 10) + "";

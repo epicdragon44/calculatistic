@@ -25,3 +25,6 @@ Open Source. Feel free to submit pull requests and improve the code. **Bug repor
 ## Bugs
 - [x] Regression line often exceeds display box
 - [x] Residual plot is not accurate
+- [x] Graphical artifacts on Histogram slider
+- [x] Overlapping text on boxplot
+- [x] Overlapping text on Histogram

@@ -171,18 +171,22 @@ public class UnivariatePanel extends JPanel implements ActionListener {
             int xDiff = highXBound - lowXBound;
 
                 //draw outliers
+            boolean odd = true;
             for (Double d : outliers) {
+                int y = 375;
+                odd = !odd;
+                if (odd) y = 425;
                 int pixelpos = (int)(575+(1025-575)*((d-origMin)/origRange));
                 g.fillOval(pixelpos, 275, 5, 5);
-                g.drawString(d.toString().substring(0, Math.min(4, d.toString().length())), pixelpos, 375);
+                g.drawString(d.toString().substring(0, Math.min(4, d.toString().length())), pixelpos, y);
             }
 
             //draw the rest of the boxplot
             g.drawLine(lowXBound, 275, highXBound, 275);
             g.drawLine(lowXBound, 200, lowXBound,350);
-            g.drawString(Functions.calcMinimum(input)+"", lowXBound, 375);
+            g.drawString(Functions.calcMinimum(input)+"", lowXBound, 425);
             g.drawLine(highXBound, 200, highXBound, 350);
-            g.drawString(Functions.calcMaximum(input)+"", highXBound, 375);
+            g.drawString(Functions.calcMaximum(input)+"", highXBound, 425);
             int leftX = (int)(((Functions.calcFirstQ(input)/Functions.calcMaximum(input))*xDiff)+lowXBound);
             int rightX = (int)(((Functions.calcThirdQ(input)/Functions.calcMaximum(input))*xDiff)+lowXBound);
             int midX = (int)(((Functions.calcMedian(input)/Functions.calcMaximum(input))*xDiff)+lowXBound);
@@ -196,7 +200,7 @@ public class UnivariatePanel extends JPanel implements ActionListener {
             g.drawLine(leftX, 350, rightX, 350);
             g.drawString(Functions.calcThirdQ(input)+"", rightX, 375);
             g.drawLine(midX, 200, midX, 350);
-            g.drawString(Functions.calcMedian(input)+"", midX, 375);
+            g.drawString(Functions.calcMedian(input)+"", midX, 425);
         }
     }
 
