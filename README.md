@@ -16,6 +16,7 @@ Open Source. Feel free to submit pull requests and improve the code. **Bug repor
     - [x] Make it so that large number of columns changes interval at which labels are applied
 - [x] Bivariate Analysis
   - [x] Scatterplot Box
+    - [ ] Reexpress Data Ability
   - [x] Residualplot Box
   - [x] Statistics Box
 - [x] Functions
